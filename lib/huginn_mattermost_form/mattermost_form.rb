@@ -84,7 +84,8 @@ module Agents
         post_headers['Content-Type'] = 'application/json; charset=utf-8'
 
         response = faraday.run_request(post_method.to_sym, post_url, post_body, post_headers)
-        log(response)
+        log(response.body)
+        log(response.status)
 
       end
 
