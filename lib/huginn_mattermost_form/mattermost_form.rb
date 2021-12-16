@@ -76,25 +76,25 @@ module Agents
 
 
 
-      #interpolate_with(params) do
-      #  post_url = interpolated['post_url']
-      #  post_headers = headers(interpolated[:headers])
-      #  post_body = interpolated['payload']
-      #  post_method = 'post'
-      #  post_headers['Content-Type'] = 'application/json; charset=utf-8'
+      interpolate_with(params) do
+        post_url = interpolated['post_url']
+        post_headers = headers(interpolated[:headers])
+        post_body = interpolated['payload'].to_json
+        post_method = 'post'
+        post_headers['Content-Type'] = 'application/json; charset=utf-8'
 
-      #  response = faraday.run_request(post_method.to_sym, post_url, post_body, post_headers)
+        response = faraday.run_request(post_method.to_sym, post_url, post_body, post_headers)
 
-      #end
+      end
 
-      ['Event Created', 200]
+      #['Event Created', 200]
       # payload is now ready with the data
 
-      #if interpolated['response_headers'].presence
-      #  [interpolated(params)['response'] || 'Event Created', code, "text/plain", interpolated['response_headers'].presence]
-      ##else
-      #  [interpolated(params)['response'] || 'Event Created', code]
-      #end
+      if interpolated['response_headers'].presence
+        [interpolated(params)['response'] || 'Event Created', code, "text/plain", interpolated['response_headers'].presence]
+      else
+        [interpolated(params)['response'] || 'Event Created', code]
+      end
     end
 
 
