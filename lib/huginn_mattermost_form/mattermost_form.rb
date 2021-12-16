@@ -74,16 +74,18 @@ module Agents
 
       code = (interpolated['code'].presence || 201).to_i
 
-      interpolate_with(params) do
-        post_url = interpolated['post_url']
-        post_headers = headers(interpolated[:headers])
-        post_body = interpolated['payload']
-        post_method = 'post'
-        post_headers['Content-Type'] = 'application/json; charset=utf-8'
 
-        response = faraday.run_request(post_method.to_sym, post_url, post_body, post_headers)
+      
+      #interpolate_with(params) do
+      #  post_url = interpolated['post_url']
+      #  post_headers = headers(interpolated[:headers])
+      #  post_body = interpolated['payload']
+      #  post_method = 'post'
+      #  post_headers['Content-Type'] = 'application/json; charset=utf-8'
 
-      end
+      #  response = faraday.run_request(post_method.to_sym, post_url, post_body, post_headers)
+
+      #end
 
 
       # payload is now ready with the data
