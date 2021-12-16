@@ -55,27 +55,27 @@ module Agents
       secret = request.path_parameters[:secret]
       return ["Not Authorized", 401] unless secret == interpolated['secret']
 
-      params = request.query_parameters.dup 
-      begin
-        params.update(request.request_parameters)
-      rescue EOFError
-      end
+      #params = request.query_parameters.dup 
+      #begin
+      #  params.update(request.request_parameters)
+      #rescue EOFError
+      #end
 
-      method = request.method_symbol.to_s
-      headers = request.headers.each_with_object({}) { |(name, value), hash|
-        case name
-        when /\AHTTP_([A-Z0-9_]+)\z/
-          hash[$1.tr('_','-').gsub(/[^-]+/, &:capitalize)] = value
-        end
-      }
+      #method = request.method_symbol.to_s
+      #headers = request.headers.each_with_object({}) { |(name, value), hash|
+      #  case name
+      #  when /\AHTTP_([A-Z0-9_]+)\z/
+      #    hash[$1.tr('_','-').gsub(/[^-]+/, &:capitalize)] = value
+      #  end
+      #}
 
-      verbs = (interpolated['verbs'] || 'post').split(/,/).map { |x| x.strip.downcase }.select { |x| x.present? }
-      return ["Please use #{verbs.join('/').uppercase} requests only", 401] unless verbs.include?(method)
+      #verbs = (interpolated['verbs'] || 'post').split(/,/).map { |x| x.strip.downcase }.select { |x| x.present? }
+      #return ["Please use #{verbs.join('/').uppercase} requests only", 401] unless verbs.include?(method)
 
-      code = (interpolated['code'].presence || 201).to_i
+      #code = (interpolated['code'].presence || 201).to_i
 
 
-      
+
       #interpolate_with(params) do
       #  post_url = interpolated['post_url']
       #  post_headers = headers(interpolated[:headers])
