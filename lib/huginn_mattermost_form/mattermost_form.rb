@@ -87,14 +87,14 @@ module Agents
 
       #end
 
-
+      ['Event Created', 200]
       # payload is now ready with the data
 
-      if interpolated['response_headers'].presence
-        [interpolated(params)['response'] || 'Event Created', code, "text/plain", interpolated['response_headers'].presence]
-      else
-        [interpolated(params)['response'] || 'Event Created', code]
-      end
+      #if interpolated['response_headers'].presence
+      #  [interpolated(params)['response'] || 'Event Created', code, "text/plain", interpolated['response_headers'].presence]
+      ##else
+      #  [interpolated(params)['response'] || 'Event Created', code]
+      #end
     end
 
 
